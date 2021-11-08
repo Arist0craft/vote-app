@@ -8,6 +8,8 @@ authors = ["Arist0craft <dimnktn@gmail.com>"]
 python = "^3.9"
 Django = "^3.2.9"
 psycopg2 = "^2.9.1"
+django-environ = "^0.8.1"
+uvicorn = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
