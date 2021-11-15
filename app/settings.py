@@ -16,11 +16,10 @@ from typing import List
 
 import environ
 
-env = environ.Env(
-    DEBUG=(bool, True),
-    ALLOWED_HOSTS=(list, [])
-)
 
+env = environ.Env(
+    DEBUG=(bool, True)
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,13 +31,15 @@ environ.Env.read_env(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY: str = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG: str = env('DEBUG')
 
-ALLOWED_HOSTS: List[str] = env("ALLOWED_HOSTS")
 
+ALLOWED_HOSTS: List[str] = ["127.0.0.1", "localhost"]
+if (host := env("ALLOWED_HOSTS", default=None)) is not None:
+    ALLOWED_HOSTS.append(host)
 
 # Application definition
 
@@ -127,7 +128,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
+STATIC_ROOT = '/staticfiles/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
