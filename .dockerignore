@@ -19,3 +19,4 @@ coverage.xml
 tests
 .idea/
 .vscode/
+staticfiles/
